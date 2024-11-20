@@ -13,12 +13,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.entrar.setOnClickListener {
-            val navegarAlterarProduto = Intent(this, AlterarProduto::class.java)
-            startActivity(navegarAlterarProduto)
+            val menu = Intent(this, Menu::class.java)
+            startActivity(menu)
         }
     }
 }

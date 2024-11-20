@@ -15,7 +15,7 @@
         android:layout_marginTop="120dp"
         android:text="@string/alteraProduto"
         android:textAllCaps="true"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,24 +32,26 @@
         android:hint="@string/codigo_produto"
         android:inputType="number"
         android:paddingBottom="40dp"
-        android:textColorHint="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editTextTextMultiLine2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:ems="10"
+        android:gravity="start|top"
         android:hint="@string/nome_produto"
-        android:inputType="text"
-        android:paddingBottom="40dp"
-        android:text="@string/nome_pro"
-        android:textColorHint="@color/black"
+        android:inputType="textMultiLine"
+        android:paddingBottom="40sp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
@@ -66,10 +68,11 @@
         android:hint="@string/descricao_produto"
         android:inputType="textMultiLine"
         android:paddingBottom="40dp"
-        android:textColorHint="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
 
     <EditText
         android:id="@+id/editTextNumber2"
@@ -82,7 +85,8 @@
         android:hint="@string/estoque"
         android:inputType="number"
         android:paddingBottom="40dp"
-        android:textColorHint="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
@@ -129,5 +133,18 @@
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="@+id/guideline7"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="#E06645"
+        android:paddingTop="20sp"
+        android:text="@string/imd_logo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

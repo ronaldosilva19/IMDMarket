@@ -19,9 +19,10 @@ class AlterarProduto : AppCompatActivity() {
         binding = AlterarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.limpar.setOnClickListener {
-            val navegarTelaPrincipal = Intent(this, MainActivity::class.java)
-            startActivity(navegarTelaPrincipal)
+        binding.alterar.setOnClickListener {
+            // Faz algo e volta para a tela de Menu.
+            val menu = Intent(this, Menu::class.java)
+            startActivity(menu)
         }
     }
 }
