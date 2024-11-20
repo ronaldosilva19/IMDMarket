@@ -11,7 +11,7 @@
     <string name="cadastro_produto">Cadastrar produto</string>
     <string name="listar_produtos">Listar produtos</string>
     <string name="alterar_produto">Alterar produto</string>
-    <string name="deletar_produto">Deletar produto</string>
+    <string name="deletar_produto">Deletar produtos</string>
     <string name="titulo_cadastrar">Cadastrar Produto</string>
     <string name="codigo_produto">Código produto:</string>
     <string name="nome_produto">Nome produto:</string>
@@ -20,4 +20,9 @@
     <string name="estoque">Estoque:</string>
     <string name="salvar">Salvar</string>
     <string name="limpar">Limpar</string>
+    <string name="alteraProduto">Alterar Produto</string>
+    <string name="alterar">Alterar</string>
+    <string name="deletar">Deletar</string>
+    <string name="lista_de_produtos">Lista de produtos</string>
+    <string name="voltar">Voltar</string>
 </resources>

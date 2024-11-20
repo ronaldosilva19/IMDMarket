@@ -7,18 +7,21 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.imdmarket.databinding.ActivityMainBinding
+import com.example.imdmarket.databinding.AlterarProdutoBinding
 
-class MainActivity : AppCompatActivity() {
+class AlterarProduto : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: AlterarProdutoBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-       binding = ActivityMainBinding.inflate(layoutInflater)
+
+        binding = AlterarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.entrar.setOnClickListener {
-            val navegarAlterarProduto = Intent(this, AlterarProduto::class.java)
-            startActivity(navegarAlterarProduto)
+        binding.limpar.setOnClickListener {
+            val navegarTelaPrincipal = Intent(this, MainActivity::class.java)
+            startActivity(navegarTelaPrincipal)
         }
     }
 }
