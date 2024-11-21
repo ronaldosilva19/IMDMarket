@@ -13,18 +13,20 @@
     <string name="alterar_produto">Alterar produto</string>
     <string name="deletar_produto">Deletar produto</string>
     <string name="titulo_cadastrar">Cadastrar Produto</string>
-    <string name="codigo_produto">Código produto:</string>
-    <string name="nome_produto">Nome produto:</string>
-    <string name="nome_pro">Nome produto:</string>
+    <string name="codigo_produto">Código do produto:</string>
+    <string name="nome_produto">Nome do produto:</string>
     <string name="descricao_produto">Descrição do produto:</string>
     <string name="estoque">Estoque:</string>
     <string name="salvar">Salvar</string>
     <string name="limpar">Limpar</string>
     <string name="alteraProduto">Alterar Produto</string>
+    <string name="alteraSenha">Alterar Senha</string>
     <string name="alterar">Alterar</string>
     <string name="deletar">Deletar</string>
     <string name="lista_de_produtos">Lista de produtos</string>
     <string name="voltar">Voltar</string>
     <string name="imd_logo">IMDMARKET</string>
-    <string name="nome_produto2">Nome produto</string>
+    <string name="alterarSenha">Alterar Senha</string>
+    <string name="novaSenha">Nova Senha</string>
+    <string name="confirmaSenha">Repetir senha</string>
 </resources>
