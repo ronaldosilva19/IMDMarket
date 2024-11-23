@@ -15,7 +15,7 @@
         android:background="#6F57A2"
         android:text="@string/deletar_produto"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/listarProdutos" />
 
@@ -27,7 +27,7 @@
         android:background="#6F57A2"
         android:text="@string/cadastro_produto"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -39,7 +39,7 @@
         android:background="#6F57A2"
         android:text="@string/alterar_produto"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/cadastrarProduto" />
 
@@ -63,7 +63,7 @@
         android:background="#6F57A2"
         android:text="@string/listar_produtos"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 

@@ -58,6 +58,7 @@
         android:background="#6F57A2"
         android:text="@string/voltar"
         android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
