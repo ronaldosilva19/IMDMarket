@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BF2323"
+    android:background="@drawable/background_app"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -72,12 +72,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/entrar"
         android:layout_width="160dp"
         android:layout_height="60dp"
         android:layout_marginTop="32dp"
-        android:background="#6F57A2"
+        android:background="@drawable/background_botao"
         android:text="@string/botao_entrar"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -85,7 +85,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userPass" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/esqueci_senha"
         style="?attr/borderlessButtonStyle"
         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
         android:layout_marginTop="32dp"
         android:background="?attr/selectableItemBackground"
         android:text="@string/redefinir_senha"
-        android:textColor="#3A58C1"
+        android:textColor="#FF6200EE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/entrar" />

@@ -4,39 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BF2323">
+    android:background="@drawable/background_app">
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/deletarProduto"
         android:layout_width="130dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
-        android:background="#6F57A2"
+        android:background="@drawable/background_botao"
         android:text="@string/deletar_produto"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/listarProdutos" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/cadastrarProduto"
         android:layout_width="130dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
-        android:background="#6F57A2"
+        android:background="@drawable/background_botao"
         android:text="@string/cadastro_produto"
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/alterarProduto"
         android:layout_width="130dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
-        android:background="#6F57A2"
+        android:background="@drawable/background_botao"
         android:text="@string/alterar_produto"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -55,12 +55,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/listarProdutos"
         android:layout_width="130dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
-        android:background="#6F57A2"
+        android:background="@drawable/background_botao"
         android:text="@string/listar_produtos"
         android:textColor="@color/white"
         android:textSize="18sp"
