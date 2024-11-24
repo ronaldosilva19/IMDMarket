@@ -43,5 +43,10 @@ class AlterarSenha : AppCompatActivity() {
                 Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_LONG).show()
             }
         }
+
+        binding.cancelar.setOnClickListener {
+            val telaLogin = Intent(this, MainActivity::class.java)
+            startActivity(telaLogin)
+        }
     }
 }

@@ -28,4 +28,5 @@
     <string name="alterarSenha">Alterar Senha</string>
     <string name="novaSenha">Nova Senha</string>
     <string name="confirmaSenha">Repetir senha</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
