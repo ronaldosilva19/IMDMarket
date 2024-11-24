@@ -38,9 +38,9 @@
             android:id="@+id/codigo_produto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/codigo_produto"
             android:inputType="number"
@@ -56,9 +56,9 @@
             android:id="@+id/descricao_produto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/descricao_produto"
@@ -75,9 +75,9 @@
             android:id="@+id/estoque_produto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:hint="@string/estoque"
             android:inputType="number"
@@ -94,30 +94,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            app:layout_constraintGuide_begin="206dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.45" />
+            app:layout_constraintGuide_begin="195dp" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.55" />
+            app:layout_constraintGuide_begin="216dp" />
 
 
         <EditText
             android:id="@+id/nome_produto"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:gravity="start|top"
             android:hint="@string/nome_produto"
@@ -131,25 +131,29 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/salvar"
-            android:layout_width="120dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/background_botao"
             android:text="@string/salvar"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@+id/guideline6"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/estoque_produto" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/limpar"
-            android:layout_width="120dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/background_botao"
             android:text="@string/limpar"
             android:textColor="@color/white"
             android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline7"
             app:layout_constraintTop_toBottomOf="@+id/estoque_produto" />
 
