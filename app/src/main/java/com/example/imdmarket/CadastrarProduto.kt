@@ -3,29 +3,31 @@ package com.example.imdmarket
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.imdmarket.databinding.CadastrarProdutoBinding
 
 class CadastrarProduto : AppCompatActivity() {
     private lateinit var binding: CadastrarProdutoBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = CadastrarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.salvar.setOnClickListener {
+        binding.salvar.setOnClickListener  {
 
-            var codigoProduto = binding.codigoProduto.text.toString()
-            var nomeProduto = binding.nomeProduto.text.toString()
-            var descricaoProduto = binding.descricaoProduto.text.toString()
-            var estoque = binding.estoqueProduto.text.toString()
+            val codigoProduto = binding.codigoProduto.text.toString()
+            val nomeProduto = binding.nomeProduto.text.toString()
+            val descricaoProduto = binding.descricaoProduto.text.toString()
+            val estoque = binding.estoqueProduto.text.toString().toInt()
 
-            if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque.isNotEmpty()){
+
+            if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque >= 0){
                 // Faz algo e volta para a tela de Menu.
+//                val listaDeProdutos = ListaDeProdutos()
+//                produtos.add(Produto(codigoProduto, nomeProduto, descricaoProduto, estoque))
+
                 Toast.makeText(this, "Produto cadastrado com sucesso.", Toast.LENGTH_LONG).show()
                 val salvar = Intent(this, Menu::class.java)
                 startActivity(salvar)
@@ -40,5 +42,7 @@ class CadastrarProduto : AppCompatActivity() {
             binding.descricaoProduto.setText("")
             binding.estoqueProduto.setText("")
         }
+
     }
+
 }
