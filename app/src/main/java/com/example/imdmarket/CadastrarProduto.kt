@@ -25,8 +25,8 @@ class CadastrarProduto : AppCompatActivity() {
 
             if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque >= 0){
                 // Faz algo e volta para a tela de Menu.
-//                val listaDeProdutos = ListaDeProdutos()
-//                produtos.add(Produto(codigoProduto, nomeProduto, descricaoProduto, estoque))
+                val listaDeProdutos = ListaDeProdutos()
+                listaDeProdutos.produtos.add(Produto(codigoProduto, nomeProduto, descricaoProduto, estoque))
 
                 Toast.makeText(this, "Produto cadastrado com sucesso.", Toast.LENGTH_LONG).show()
                 val salvar = Intent(this, Menu::class.java)
