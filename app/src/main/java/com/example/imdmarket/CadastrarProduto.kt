@@ -20,13 +20,13 @@ class CadastrarProduto : AppCompatActivity() {
             val codigoProduto = binding.codigoProduto.text.toString()
             val nomeProduto = binding.nomeProduto.text.toString()
             val descricaoProduto = binding.descricaoProduto.text.toString()
-            val estoque = binding.estoqueProduto.text.toString().toInt()
+            val estoque = binding.estoqueProduto.text.toString()
 
 
-            if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque >= 0){
+            if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-                val listaDeProdutos = ListaDeProdutos()
-                listaDeProdutos.produtos.add(Produto(codigoProduto, nomeProduto, descricaoProduto, estoque))
+               // val listaDeProdutos = ListaDeProdutos()
+                //listaDeProdutos.produtos.add(Produto(codigoProduto, nomeProduto, descricaoProduto, estoque))
 
                 Toast.makeText(this, "Produto cadastrado com sucesso.", Toast.LENGTH_LONG).show()
                 val salvar = Intent(this, Menu::class.java)
@@ -36,6 +36,7 @@ class CadastrarProduto : AppCompatActivity() {
             }
         }
 
+        // Limpa todos os campos digitáveis.
         binding.limpar.setOnClickListener {
             binding.codigoProduto.setText("")
             binding.nomeProduto.setText("")

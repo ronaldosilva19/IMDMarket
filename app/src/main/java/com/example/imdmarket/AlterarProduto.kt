@@ -33,6 +33,7 @@ class AlterarProduto : AppCompatActivity() {
             }
         }
 
+        // Caso queira limpar todos campos, só clicar no botão de 'limpar'.
         binding.limpar.setOnClickListener {
             binding.alteraCodigo.setText("")
             binding.nomeProduto.setText("")
