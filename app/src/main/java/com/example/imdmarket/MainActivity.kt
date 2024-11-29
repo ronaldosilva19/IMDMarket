@@ -12,8 +12,10 @@ import com.example.imdmarket.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var bancoProduto: BancoProduto
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bancoProduto = BancoProduto(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

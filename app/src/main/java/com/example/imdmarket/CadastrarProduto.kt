@@ -2,35 +2,40 @@ package com.example.imdmarket
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.imdmarket.databinding.CadastrarProdutoBinding
 
 class CadastrarProduto : AppCompatActivity() {
     private lateinit var binding: CadastrarProdutoBinding
-
+    private lateinit var bancoProduto: BancoProduto
+   // private lateinit var produto : ArrayList<Produto>
+    private lateinit var adapter: ArrayAdapter<Produto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bancoProduto = BancoProduto(this)
         binding = CadastrarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.salvar.setOnClickListener  {
 
-            val codigoProduto = binding.codigoProduto.text.toString()
-            val nomeProduto = binding.nomeProduto.text.toString()
-            val descricaoProduto = binding.descricaoProduto.text.toString()
-            val estoque = binding.estoqueProduto.text.toString()
+            var codigoProduto = binding.codigoProduto.text.toString()
+            var nomeProduto = binding.nomeProduto.text.toString()
+            var descricaoProduto = binding.descricaoProduto.text.toString()
+            var estoque = binding.estoqueProduto.text.toString()
 
 
             if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-               // val listaDeProdutos = ListaDeProdutos()
-                //listaDeProdutos.produtos.add(Produto(codigoProduto, nomeProduto, descricaoProduto, estoque))
-
+                //bancoProduto.salvarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoque.toInt())
                 Toast.makeText(this, "Produto cadastrado com sucesso.", Toast.LENGTH_LONG).show()
-                val salvar = Intent(this, Menu::class.java)
-                startActivity(salvar)
+                //produto.clear()
+                //produto.addAll(bancoProduto.listarProdutos())
+                //adapter.notifyDataSetChanged()
+                val menu = Intent(this, Menu::class.java)
+                startActivity(menu)
             }else {
                 Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_LONG).show()
             }

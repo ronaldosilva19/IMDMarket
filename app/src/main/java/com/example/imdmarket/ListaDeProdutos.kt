@@ -11,22 +11,19 @@ import com.example.imdmarket.databinding.ListaDeProdutosBinding
 class ListaDeProdutos : AppCompatActivity() {
 
     private lateinit var binding: ListaDeProdutosBinding
+    private lateinit var bancoProduto: BancoProduto
+    private lateinit var adapter: ArrayAdapter<Produto>
+    private lateinit var produtos: ArrayList<Produto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        bancoProduto = BancoProduto(this)
         binding = ListaDeProdutosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var produtos = mutableListOf<Produto>()
-
-        // Apenas para visualizacao de teste.
-        var contador = 1
-        while(contador <= 20){
-            produtos.add(Produto("100", "SterBom", "Agua mineral para saciar a sede", 10))
-            contador++
-        }
-        var arrayAdapter = ArrayAdapter(this, R.layout.simple_list_item_1, produtos)
-        binding.listView.adapter = arrayAdapter
+        produtos = bancoProduto.listarProdutos()
+        adapter = ArrayAdapter(this, R.layout.simple_list_item_1, produtos)
+        binding.listView.adapter = adapter
 
         binding.voltar.setOnClickListener {
             // Faz algo e volta para a tela de Menu.

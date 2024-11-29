@@ -2,6 +2,7 @@ package com.example.imdmarket
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,23 +14,33 @@ import com.example.imdmarket.databinding.AlterarProdutoBinding
 class AlterarProduto : AppCompatActivity() {
 
     private lateinit var binding: AlterarProdutoBinding
+    private lateinit var bancoProduto: BancoProduto
+    private lateinit var produto: ArrayList<Produto>
+    private lateinit var adapter: ArrayAdapter<Produto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        bancoProduto = BancoProduto(this)
         binding = AlterarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.alterar.setOnClickListener {
-            val alteraCodigo = binding.alteraCodigo.text.toString()
+            var codigoProduto = binding.alteraCodigo.text.toString()
+            var nomeProduto = binding.nomeProduto.text.toString()
+            var descricaoProduto = binding.descricaoProduto.text.toString()
+            var estoqueProduto = binding.estoqueProduto.text.toString()
 
-            if(alteraCodigo.isEmpty()){
-                Toast.makeText(this, "O campo de 'Codigo de produto' eh obrigatorio.", Toast.LENGTH_LONG).show()
-            }else{
+            if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoqueProduto.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-                Toast.makeText(this, "Produto com codigo $alteraCodigo alterado com sucesso.", Toast.LENGTH_LONG).show()
+                var resultado = bancoProduto.atualizarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoqueProduto.toInt())
+                //produto.clear()
+                //produto.addAll(bancoProduto.listarProdutos())
+                adapter.notifyDataSetChanged()
+                Toast.makeText(this, "Produto com codigo $codigoProduto alterado com sucesso.", Toast.LENGTH_LONG).show()
                 val menu = Intent(this, Menu::class.java)
                 startActivity(menu)
+            }else{
+                Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_LONG).show()
             }
         }
 

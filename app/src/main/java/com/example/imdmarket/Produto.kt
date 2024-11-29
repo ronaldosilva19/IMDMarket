@@ -1,10 +1,10 @@
 package com.example.imdmarket
 
 class Produto(
-    private var codigoProduto: String,
-    private var nomeProduto: String,
-    private var descricaoProduto: String,
-    private var estoque: Int
+    private var codigoProduto: Int = 0,
+    private var nomeProduto: String = "",
+    private var descricaoProduto: String = "",
+    private var estoque: Int = 0
 
 ){
     override fun toString(): String {
