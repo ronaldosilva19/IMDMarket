@@ -36,7 +36,7 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
         onCreate(db)
     }
 
-    fun salvarProduto(codigo : Long, nome: String, descricao: String, estoque: Int): Long{
+    fun salvarProduto(codigo : Long, nome: String, descricao: String, estoque: Int): Boolean{
         val bancoProduto = writableDatabase
         val values = ContentValues().apply{
             put(COLUMM_ID, codigo)
@@ -46,7 +46,11 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
         }
         val resultado = bancoProduto.insert(TABLE_NAME, null, values)
         bancoProduto.close()
-        return resultado
+        return if(resultado.toInt() == -1){
+            true
+        }else{
+            false
+        }
     }
 
     fun atualizarProduto(codigo: Long, nome: String, descricao: String, estoque: Int): Int{
@@ -57,7 +61,7 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
             put(COLUMM_DESCRICAO, descricao)
             put(COLUMM_ESTOQUE, estoque)
         }
-        val resultado = bancoProduto.update(TABLE_NAME, values, "$COLUMM_ID = ?", arrayOf(codigo.toString()))
+        val resultado = bancoProduto.update(TABLE_NAME, values, "$COLUMM_ID =?", arrayOf(codigo.toString()))
         bancoProduto.close()
         return resultado
     }
