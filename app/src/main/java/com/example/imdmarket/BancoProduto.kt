@@ -10,19 +10,25 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
     companion object{
         private const val NOME = "dbproduto"
         private const val VERSAO = 1
+        private const val TABLE_NAME = "produtos"
+        private const val COLUMM_ID = "codigo"
+        private const val COLUMM_NAME = "nome"
+        private const val COLUMM_DESCRICAO = "descricao"
+        private const val COLUMM_ESTOQUE = "estoque"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-            db.execSQL(
+            val criaTabela =
                 """
-            CREATE TABLE produtos(
-                codido INTEGER PRIMARY KEY,
-                nome TEXT,
-                descricao TEXT,
-                estoque INT NOT NULL
+            CREATE TABLE $TABLE_NAME(
+                $COLUMM_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMM_NAME TEXT,
+                $COLUMM_DESCRICAO TEXT,
+                $COLUMM_ESTOQUE INT NOT NULL
             )
-            """
-            )
+            """.trimIndent()
+        db.execSQL(criaTabela)
+
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -30,31 +36,36 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
     }
 
     fun salvarProduto(codigo : Long, nome: String, descricao: String, estoque: Int){
-        val bancoProduto = this.writableDatabase
-        val container = ContentValues()
-        container.put("codigo", codigo)
-        container.put("nome", nome)
-        container.put("descricao", descricao)
-        container.put("estoque", estoque)
+        val bancoProduto = writableDatabase
+        val container = ContentValues().apply{
+            put("codigo", codigo)
+            put("nome", nome)
+            put("descricao", descricao)
+            put("estoque", estoque)
+        }
         bancoProduto.insert("produtos", null, container)
         bancoProduto.close()
+
     }
 
-    fun atualizarProduto(codigo: Long, nome: String, descricao: String, estoque: Int){
-        val bancoProduto = this.writableDatabase
-        val container = ContentValues()
-        container.put("codigo", codigo)
-        container.put("nome", nome)
-        container.put("descricao", descricao)
-        container.put("estoque", estoque)
-        bancoProduto.update("produtos", container, "codigo=$codigo", null)
+    fun atualizarProduto(codigo: Long, nome: String, descricao: String, estoque: Int): Int{
+        val bancoProduto = writableDatabase
+        val container = ContentValues().apply{
+            put("codigo", codigo)
+            put("nome", nome)
+            put("descricao", descricao)
+            put("estoque", estoque)
+        }
+        val resultado = bancoProduto.update("produtos", container, "codigo=$codigo", null)
         bancoProduto.close()
+        return resultado
     }
 
-    fun deletarProduto(codigo: Long){
+    fun deletarProduto(codigo: Long): Int{
         val bancoProduto = this.writableDatabase
-        bancoProduto.delete("produtos", "codigo=$codigo", null)
+        val resultado = bancoProduto.delete("produtos", "codigo=$codigo", null)
         bancoProduto.close()
+        return resultado
     }
 
     fun listarProdutos() : ArrayList<Produto>{

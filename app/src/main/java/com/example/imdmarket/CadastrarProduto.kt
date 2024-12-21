@@ -10,14 +10,15 @@ import com.example.imdmarket.databinding.CadastrarProdutoBinding
 class CadastrarProduto : AppCompatActivity() {
     private lateinit var binding: CadastrarProdutoBinding
     private lateinit var bancoProduto: BancoProduto
-   // private lateinit var produto : ArrayList<Produto>
-    private lateinit var adapter: ArrayAdapter<Produto>
+    private lateinit var produto : ArrayList<Produto>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bancoProduto = BancoProduto(this)
         binding = CadastrarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        bancoProduto = BancoProduto(this)
+        produto = bancoProduto.listarProdutos()
 
         binding.salvar.setOnClickListener  {
 
@@ -29,11 +30,10 @@ class CadastrarProduto : AppCompatActivity() {
 
             if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-                //bancoProduto.salvarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoque.toInt())
+                bancoProduto.salvarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoque.toInt())
                 Toast.makeText(this, "Produto cadastrado com sucesso.", Toast.LENGTH_LONG).show()
-                //produto.clear()
-                //produto.addAll(bancoProduto.listarProdutos())
-                //adapter.notifyDataSetChanged()
+                produto.clear()
+                produto.addAll(bancoProduto.listarProdutos())
                 val menu = Intent(this, Menu::class.java)
                 startActivity(menu)
             }else {

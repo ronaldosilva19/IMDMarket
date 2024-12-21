@@ -17,16 +17,15 @@ class ListaDeProdutos : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bancoProduto = BancoProduto(this)
         binding = ListaDeProdutosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        bancoProduto = BancoProduto(this)
         produtos = bancoProduto.listarProdutos()
         adapter = ArrayAdapter(this, R.layout.simple_list_item_1, produtos)
         binding.listView.adapter = adapter
 
         binding.voltar.setOnClickListener {
-            // Faz algo e volta para a tela de Menu.
             val menu = Intent(this, Menu::class.java)
             startActivity(menu)
         }

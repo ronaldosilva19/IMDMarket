@@ -12,28 +12,27 @@ class DeletarProduto : AppCompatActivity() {
     private lateinit var binding: DeletarProdutoBinding
     private lateinit var bancoProduto: BancoProduto
     private lateinit var produto: ArrayList<Produto>
-    private lateinit var adapter: ArrayAdapter<Produto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bancoProduto = BancoProduto(this)
         binding = DeletarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        bancoProduto = BancoProduto(this)
+        produto = bancoProduto.listarProdutos()
 
         binding.deletar.setOnClickListener {
             var codigoProduto = binding.codigoProduto.text.toString()
 
             if(codigoProduto.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-                var resultado = bancoProduto.deletarProduto(codigoProduto.toLong())
-                //produto.clear()
-                //produto.addAll(bancoProduto.listarProdutos())
-                adapter.notifyDataSetChanged()
+                bancoProduto.deletarProduto(codigoProduto.toLong())
+                produto.clear()
+                produto.addAll(bancoProduto.listarProdutos())
                 Toast.makeText(this, "Produto deletado com sucesso.", Toast.LENGTH_LONG).show()
                 val menu = Intent(this, Menu::class.java)
                 startActivity(menu)
             }else{
-                Toast.makeText(this, "O campo de 'Codigo de produto' esta vazio.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Preencha o campo solicitado.", Toast.LENGTH_LONG).show()
 
             }
         }
