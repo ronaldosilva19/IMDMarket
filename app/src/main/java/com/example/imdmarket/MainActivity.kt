@@ -1,5 +1,6 @@
 package com.example.imdmarket
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -13,19 +14,31 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var bancoProduto: BancoProduto
+
+    private val PREFS_NAME = "LoginPrefs"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bancoProduto = BancoProduto(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        // Salvando o login e senha padrao.
+        val editor = sharedPreferences.edit()
+        editor.putString("USERNAME", "admin")
+        editor.putString("PASSWORD", "admin")
+        editor.apply()
+
         binding.entrar.setOnClickListener {
             var login = binding.userLogin.text.toString() // pegadndo o texto e transformando em string.
             var senha = binding.userPass.text.toString()
 
-
             if(login.isNotEmpty() && senha.isNotEmpty()){
-                if(login.equals("admin") && senha.equals("admin")){
+                val loginSalvo = sharedPreferences.getString("USERNAME", null)
+                val senhaSalva = sharedPreferences.getString("PASSWORD", null)
+
+                if(login.equals(loginSalvo) && senha.equals(senhaSalva)){
                     Toast.makeText(this, "Login efetuado com sucesso.", Toast.LENGTH_LONG).show()
                     val menu = Intent(this, Menu::class.java)
                     startActivity(menu)

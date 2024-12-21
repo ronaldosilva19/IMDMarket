@@ -11,14 +11,12 @@ class DeletarProduto : AppCompatActivity() {
 
     private lateinit var binding: DeletarProdutoBinding
     private lateinit var bancoProduto: BancoProduto
-    private lateinit var produto: ArrayList<Produto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DeletarProdutoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         bancoProduto = BancoProduto(this)
-        produto = bancoProduto.listarProdutos()
 
         binding.deletar.setOnClickListener {
             var codigoProduto = binding.codigoProduto.text.toString()
@@ -26,8 +24,6 @@ class DeletarProduto : AppCompatActivity() {
             if(codigoProduto.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
                 bancoProduto.deletarProduto(codigoProduto.toLong())
-                produto.clear()
-                produto.addAll(bancoProduto.listarProdutos())
                 Toast.makeText(this, "Produto deletado com sucesso.", Toast.LENGTH_LONG).show()
                 val menu = Intent(this, Menu::class.java)
                 startActivity(menu)

@@ -31,46 +31,47 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
 
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        onCreate(db)
     }
 
-    fun salvarProduto(codigo : Long, nome: String, descricao: String, estoque: Int){
+    fun salvarProduto(codigo : Long, nome: String, descricao: String, estoque: Int): Long{
         val bancoProduto = writableDatabase
-        val container = ContentValues().apply{
-            put("codigo", codigo)
-            put("nome", nome)
-            put("descricao", descricao)
-            put("estoque", estoque)
+        val values = ContentValues().apply{
+            put(COLUMM_ID, codigo)
+            put(COLUMM_NAME, nome)
+            put(COLUMM_DESCRICAO, descricao)
+            put(COLUMM_ESTOQUE, estoque)
         }
-        bancoProduto.insert("produtos", null, container)
+        val resultado = bancoProduto.insert(TABLE_NAME, null, values)
         bancoProduto.close()
-
+        return resultado
     }
 
     fun atualizarProduto(codigo: Long, nome: String, descricao: String, estoque: Int): Int{
         val bancoProduto = writableDatabase
-        val container = ContentValues().apply{
-            put("codigo", codigo)
-            put("nome", nome)
-            put("descricao", descricao)
-            put("estoque", estoque)
+        val values = ContentValues().apply{
+            put(COLUMM_ID, codigo)
+            put(COLUMM_NAME, nome)
+            put(COLUMM_DESCRICAO, descricao)
+            put(COLUMM_ESTOQUE, estoque)
         }
-        val resultado = bancoProduto.update("produtos", container, "codigo=$codigo", null)
+        val resultado = bancoProduto.update(TABLE_NAME, values, "$COLUMM_ID = ?", arrayOf(codigo.toString()))
         bancoProduto.close()
         return resultado
     }
 
     fun deletarProduto(codigo: Long): Int{
-        val bancoProduto = this.writableDatabase
-        val resultado = bancoProduto.delete("produtos", "codigo=$codigo", null)
+        val bancoProduto = writableDatabase
+        val resultado = bancoProduto.delete(TABLE_NAME, "$COLUMM_ID = ?", arrayOf(codigo.toString()))
         bancoProduto.close()
         return resultado
     }
 
     fun listarProdutos() : ArrayList<Produto>{
-        val bancoProduto = this.readableDatabase
-        val cursor = bancoProduto.rawQuery("SELECT * FROM produtos", null)
+        val bancoProduto = readableDatabase
+        val cursor = bancoProduto.rawQuery("SELECT * FROM $TABLE_NAME", null)
         var array = ArrayList<Produto>()
         if(cursor.count > 0){
             cursor.moveToFirst()
