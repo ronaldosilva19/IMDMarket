@@ -31,10 +31,21 @@ class AlterarProduto : AppCompatActivity() {
 
             if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoqueProduto.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-                bancoProduto.atualizarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoqueProduto.toInt())
-                Toast.makeText(this, "Produto com codigo $codigoProduto alterado com sucesso.", Toast.LENGTH_LONG).show()
-                val menu = Intent(this, Menu::class.java)
-                startActivity(menu)
+                if(bancoProduto.atualizarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoqueProduto.toInt()) == 0) {
+                    Toast.makeText(
+                        this,
+                        "Produto com codigo $codigoProduto alterado com sucesso.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    val menu = Intent(this, Menu::class.java)
+                    startActivity(menu)
+                }else if(bancoProduto.atualizarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoqueProduto.toInt()) == 1){
+                    Toast.makeText(
+                        this,
+                        "Produto com codigo $codigoProduto nao foi cadastrado ainda.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
             }else{
                 Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_LONG).show()
             }

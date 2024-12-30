@@ -23,10 +23,13 @@ class DeletarProduto : AppCompatActivity() {
 
             if(codigoProduto.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-                bancoProduto.deletarProduto(codigoProduto.toLong())
-                Toast.makeText(this, "Produto deletado com sucesso.", Toast.LENGTH_LONG).show()
-                val menu = Intent(this, Menu::class.java)
-                startActivity(menu)
+                if(bancoProduto.deletarProduto(codigoProduto.toLong()) == 0) {
+                    Toast.makeText(this, "Produto deletado com sucesso.", Toast.LENGTH_LONG).show()
+                    val menu = Intent(this, Menu::class.java)
+                    startActivity(menu)
+                }else if(bancoProduto.deletarProduto(codigoProduto.toLong()) == 1){
+                    Toast.makeText(this, "Produto com codigo informado nao foi cadastrado.", Toast.LENGTH_LONG).show()
+                }
             }else{
                 Toast.makeText(this, "Preencha o campo solicitado.", Toast.LENGTH_LONG).show()
 

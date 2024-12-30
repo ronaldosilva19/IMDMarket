@@ -36,7 +36,7 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
         onCreate(db)
     }
 
-    fun salvarProduto(codigo : Long, nome: String, descricao: String, estoque: Int): Boolean{
+    fun salvarProduto(codigo : Long, nome: String, descricao: String, estoque: Int): Int{
         val bancoProduto = writableDatabase
         val values = ContentValues().apply{
             put(COLUMM_ID, codigo)
@@ -44,29 +44,42 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
             put(COLUMM_DESCRICAO, descricao)
             put(COLUMM_ESTOQUE, estoque)
         }
-        val resultado = bancoProduto.insert(TABLE_NAME, null, values)
-        bancoProduto.close()
-        return resultado.toInt() == -1
+
+
+        try {
+            bancoProduto.insertOrThrow(TABLE_NAME, null, values)
+            bancoProduto.close()
+            return 0 // Inserido com sucesso.
+        }catch (exception : Exception){
+            return 1 // Ja cadastrado.
+        }
     }
 
     fun atualizarProduto(codigo: Long, nome: String, descricao: String, estoque: Int): Int{
-        val bancoProduto = writableDatabase
-        val values = ContentValues().apply{
-            put(COLUMM_ID, codigo)
-            put(COLUMM_NAME, nome)
-            put(COLUMM_DESCRICAO, descricao)
-            put(COLUMM_ESTOQUE, estoque)
+        if(buscarProdutoPorCodigo(codigo)) {
+            val bancoProduto = writableDatabase
+            val values = ContentValues().apply {
+                put(COLUMM_ID, codigo)
+                put(COLUMM_NAME, nome)
+                put(COLUMM_DESCRICAO, descricao)
+                put(COLUMM_ESTOQUE, estoque)
+            }
+            bancoProduto.update(TABLE_NAME, values, "$COLUMM_ID =?", arrayOf(codigo.toString()))
+            bancoProduto.close()
+            return 0 // atualizado com sucesso.
         }
-        val resultado = bancoProduto.update(TABLE_NAME, values, "$COLUMM_ID =?", arrayOf(codigo.toString()))
-        bancoProduto.close()
-        return resultado
+        return 1 // produto com codigo nao cadastrado.
     }
 
     fun deletarProduto(codigo: Long): Int{
-        val bancoProduto = writableDatabase
-        val resultado = bancoProduto.delete(TABLE_NAME, "$COLUMM_ID = ?", arrayOf(codigo.toString()))
-        bancoProduto.close()
-        return resultado
+        if(buscarProdutoPorCodigo(codigo)){
+            val bancoProduto = writableDatabase
+            bancoProduto.delete(TABLE_NAME, "$COLUMM_ID = ?", arrayOf(codigo.toString()))
+            bancoProduto.close()
+            return 0 // removido com sucesso.
+        }
+
+        return 1 // Nao cadastrado.
     }
 
     fun listarProdutos() : ArrayList<Produto>{
@@ -86,6 +99,19 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
         cursor.close()
         bancoProduto.close()
         return array
+    }
+
+    private fun buscarProdutoPorCodigo(codigo: Long): Boolean{
+        val bancoProduto = readableDatabase
+        val cursor = bancoProduto.rawQuery("SELECT COUNT(*) FROM $TABLE_NAME WHERE cogigo = ?", arrayOf(codigo.toString()))
+
+        var estaPresente = false
+        cursor.use { pointer ->
+            if(pointer.moveToFirst()){
+                estaPresente = pointer.getInt(0) > 0
+            }
+        }
+        return estaPresente
     }
 
 }

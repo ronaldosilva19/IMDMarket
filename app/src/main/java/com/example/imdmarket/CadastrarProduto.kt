@@ -27,10 +27,14 @@ class CadastrarProduto : AppCompatActivity() {
 
             if(codigoProduto.isNotEmpty() && nomeProduto.isNotEmpty() && descricaoProduto.isNotEmpty() && estoque.isNotEmpty()){
                 // Faz algo e volta para a tela de Menu.
-                bancoProduto.salvarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoque.toInt())
-                Toast.makeText(this, "Produto cadastrado com sucesso.", Toast.LENGTH_LONG).show()
-                val menu = Intent(this, Menu::class.java)
-                startActivity(menu)
+                if(bancoProduto.salvarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoque.toInt()) == 0) {
+                    Toast.makeText(this, "Produto cadastrado com sucesso.", Toast.LENGTH_LONG)
+                        .show()
+                    val menu = Intent(this, Menu::class.java)
+                    startActivity(menu)
+                }else if(bancoProduto.salvarProduto(codigoProduto.toLong(), nomeProduto, descricaoProduto, estoque.toInt()) == 1){
+                    Toast.makeText(this, "Produto com codigo informado ja cadastrado no sistema.", Toast.LENGTH_LONG).show()
+                }
             }else {
                 Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_LONG).show()
             }
