@@ -46,11 +46,7 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
         }
         val resultado = bancoProduto.insert(TABLE_NAME, null, values)
         bancoProduto.close()
-        return if(resultado.toInt() == -1){
-            true
-        }else{
-            false
-        }
+        return resultado.toInt() == -1
     }
 
     fun atualizarProduto(codigo: Long, nome: String, descricao: String, estoque: Int): Int{
