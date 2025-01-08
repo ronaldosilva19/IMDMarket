@@ -103,7 +103,7 @@ class BancoProduto(contexto : Context) : SQLiteOpenHelper(contexto, NOME, null, 
 
     private fun buscarProdutoPorCodigo(codigo: Long): Boolean{
         val bancoProduto = readableDatabase
-        val cursor = bancoProduto.rawQuery("SELECT COUNT(*) FROM $TABLE_NAME WHERE cogigo = ?", arrayOf(codigo.toString()))
+        val cursor = bancoProduto.rawQuery("SELECT COUNT(*) FROM $TABLE_NAME WHERE codigo = ?", arrayOf(codigo.toString()))
 
         var estaPresente = false
         cursor.use { pointer ->
